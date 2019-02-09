@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
@@ -36,11 +37,13 @@ public class PenumaticCommand extends Command {
     {
       lastTriggerTime = 0;
       Robot.m_PenumaticSubsystem.pistonOut();
+      controller.setRumble(RumbleType.kLeftRumble, 1.0);
     }
     else if (lastTriggerTime < 50)
     {
       lastTriggerTime++;
       Robot.m_PenumaticSubsystem.pistonIn();
+      controller.setRumble(RumbleType.kLeftRumble, 0.0);
     }
     else
       Robot.m_PenumaticSubsystem.pistonReset();

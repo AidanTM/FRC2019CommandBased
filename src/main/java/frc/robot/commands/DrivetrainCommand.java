@@ -20,6 +20,8 @@ public class DrivetrainCommand extends Command {
 	XboxController controller = OI.controller;
 
 	double[] speedVal = new double[2];
+	boolean swapForward = false;
+
 	public DrivetrainCommand() {
     // Use requires() here to declare subsystem dependencies
 		requires(Robot.m_DrivetrainSubsystem);
@@ -33,9 +35,11 @@ public class DrivetrainCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		speedVal[0] = controller.getY(Hand.kLeft) * 0.5;
+		if (controller.getAButtonPressed())
+			swapForward = !swapForward;
+			
+		speedVal[0] = -controller.getY(Hand.kLeft) * 0.5;
 		speedVal[1] = controller.getX(Hand.kLeft) * 0.5;
-
 		Robot.m_DrivetrainSubsystem.moveRobot(speedVal[0], speedVal[1]);
 	}
 
