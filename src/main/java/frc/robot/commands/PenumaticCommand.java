@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
+import frc.robot.others.PneumaticEnum;
 
 public class PenumaticCommand extends Command {
   XboxController controller = OI.controller;
@@ -36,17 +37,17 @@ public class PenumaticCommand extends Command {
     if (trigger > 0.5)
     {
       lastTriggerTime = 0;
-      Robot.m_PenumaticSubsystem.pistonOut();
+      Robot.m_PenumaticSubsystem.pistonOut(PneumaticEnum.Bird);
       controller.setRumble(RumbleType.kLeftRumble, 1.0);
     }
     else if (lastTriggerTime < 50)
     {
       lastTriggerTime++;
-      Robot.m_PenumaticSubsystem.pistonIn();
+      Robot.m_PenumaticSubsystem.pistonIn(PneumaticEnum.Bird);
       controller.setRumble(RumbleType.kLeftRumble, 0.0);
     }
     else
-      Robot.m_PenumaticSubsystem.pistonReset();
+      Robot.m_PenumaticSubsystem.pistonReset(PneumaticEnum.Bird);
   }
 
   // Make this return true when this Command no longer needs to run execute()

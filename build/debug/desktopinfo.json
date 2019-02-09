@@ -1,0 +1,9 @@
+[
+  {
+    "name": "FRC2019CommandBased",
+    "file": "C:\\Users\\AidanT\\workspace\\FRC2019CommandBased\\build\\libs\\FRC2019CommandBased.jar",
+    "extensions": [],
+    "librarydir": "C:\\Users\\AidanT\\workspace\\FRC2019CommandBased\\build\\tmp\\jniExtractDir",
+    "mainclass": "frc.robot.Main"
+  }
+]

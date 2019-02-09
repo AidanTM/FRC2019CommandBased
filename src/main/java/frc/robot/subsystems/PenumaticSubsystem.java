@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.PenumaticCommand;
+import frc.robot.others.*;
 
 /**
  * PenumaticSubsystem: Deals with all of the penumatics within the robot.
@@ -18,27 +19,68 @@ import frc.robot.commands.PenumaticCommand;
 public class PenumaticSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  DoubleSolenoid piston;
+  DoubleSolenoid hatchBirdPiston;
+  DoubleSolenoid hatchVerticalPiston;
+  DoubleSolenoid ballGripperPiston;
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    piston = new DoubleSolenoid(RobotMap.solenoidForwardPort, RobotMap.solenoidBackwardPort);
+    hatchBirdPiston = new DoubleSolenoid(RobotMap.solenoidHatchForwardPort, RobotMap.solenoidHatchBackwardPort);
+    hatchVerticalPiston = new DoubleSolenoid(RobotMap.solenoidVerticalForwardPort, RobotMap.solenoidVerticalBackwardPort);
+    ballGripperPiston = new DoubleSolenoid(RobotMap.solenoidGripperForwardPort, RobotMap.solenoidGripperBackwardPort);
+    
     setDefaultCommand(new PenumaticCommand());
   }
-
-  public void pistonIn()
+  //Yuck!
+  public void pistonIn(PneumaticEnum piston)
   {
-      piston.set(DoubleSolenoid.Value.kReverse);
+    switch (piston) {
+      case Bird:
+       hatchBirdPiston.set(DoubleSolenoid.Value.kReverse);
+      break;
+
+      case Vertical:
+        hatchVerticalPiston.set(DoubleSolenoid.Value.kReverse);
+      break;
+
+      case Gripper:
+        ballGripperPiston.set(DoubleSolenoid.Value.kReverse);
+      break;
+    }
   }
 
-  public void pistonOut()
+  public void pistonOut(PneumaticEnum piston)
   {
-      piston.set(DoubleSolenoid.Value.kForward);
+    switch (piston) {
+      case Bird:
+       hatchBirdPiston.set(DoubleSolenoid.Value.kForward);
+      break;
+
+      case Vertical:
+        hatchVerticalPiston.set(DoubleSolenoid.Value.kForward);
+      break;
+
+      case Gripper:
+        ballGripperPiston.set(DoubleSolenoid.Value.kForward);
+      break;
+    }
   }
 
-  public void pistonReset()
+  public void pistonReset(PneumaticEnum piston)
   {
-      piston.set(DoubleSolenoid.Value.kOff);
+    switch (piston) {
+      case Bird:
+       hatchBirdPiston.set(DoubleSolenoid.Value.kOff);
+      break;
+
+      case Vertical:
+        hatchVerticalPiston.set(DoubleSolenoid.Value.kOff);
+      break;
+
+      case Gripper:
+        ballGripperPiston.set(DoubleSolenoid.Value.kOff);
+      break;
+    }
   }
 }
