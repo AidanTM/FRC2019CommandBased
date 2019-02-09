@@ -37,7 +37,7 @@ public class PneumaticSubsystem extends Subsystem {
   {
     switch (piston) {
       case Bird:
-       hatchBirdPiston.set(DoubleSolenoid.Value.kReverse);
+        hatchBirdPiston.set(DoubleSolenoid.Value.kReverse);
       break;
 
       case Vertical:
@@ -54,7 +54,7 @@ public class PneumaticSubsystem extends Subsystem {
   {
     switch (piston) {
       case Bird:
-       hatchBirdPiston.set(DoubleSolenoid.Value.kForward);
+        hatchBirdPiston.set(DoubleSolenoid.Value.kForward);
       break;
 
       case Vertical:
@@ -71,7 +71,7 @@ public class PneumaticSubsystem extends Subsystem {
   {
     switch (piston) {
       case Bird:
-       hatchBirdPiston.set(DoubleSolenoid.Value.kOff);
+        hatchBirdPiston.set(DoubleSolenoid.Value.kOff);
       break;
 
       case Vertical:
