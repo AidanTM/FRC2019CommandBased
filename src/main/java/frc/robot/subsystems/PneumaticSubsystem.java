@@ -10,13 +10,13 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.PenumaticCommand;
+import frc.robot.commands.PneumaticCommand;
 import frc.robot.others.*;
 
 /**
- * PenumaticSubsystem: Deals with all of the penumatics within the robot.
+ * PneumaticSubsystem: Deals with all of the penumatics within the robot.
  */
-public class PenumaticSubsystem extends Subsystem {
+public class PneumaticSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   DoubleSolenoid hatchBirdPiston;
@@ -30,7 +30,7 @@ public class PenumaticSubsystem extends Subsystem {
     hatchVerticalPiston = new DoubleSolenoid(RobotMap.solenoidVerticalForwardPort, RobotMap.solenoidVerticalBackwardPort);
     ballGripperPiston = new DoubleSolenoid(RobotMap.solenoidGripperForwardPort, RobotMap.solenoidGripperBackwardPort);
     
-    setDefaultCommand(new PenumaticCommand());
+    setDefaultCommand(new PneumaticCommand());
   }
   //Yuck!
   public void pistonIn(PneumaticEnum piston)

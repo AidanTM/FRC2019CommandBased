@@ -15,12 +15,12 @@ import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.others.PneumaticEnum;
 
-public class PenumaticCommand extends Command {
+public class PneumaticCommand extends Command {
   XboxController controller = OI.controller;
   int lastTriggerTime = 0;
-  public PenumaticCommand() {
+  public PneumaticCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_PenumaticSubsystem);
+    requires(Robot.m_PneumaticSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -37,17 +37,17 @@ public class PenumaticCommand extends Command {
     if (trigger > 0.5)
     {
       lastTriggerTime = 0;
-      Robot.m_PenumaticSubsystem.pistonOut(PneumaticEnum.Bird);
+      Robot.m_PneumaticSubsystem.pistonOut(PneumaticEnum.Bird);
       controller.setRumble(RumbleType.kLeftRumble, 1.0);
     }
     else if (lastTriggerTime < 50)
     {
       lastTriggerTime++;
-      Robot.m_PenumaticSubsystem.pistonIn(PneumaticEnum.Bird);
+      Robot.m_PneumaticSubsystem.pistonIn(PneumaticEnum.Bird);
       controller.setRumble(RumbleType.kLeftRumble, 0.0);
     }
     else
-      Robot.m_PenumaticSubsystem.pistonReset(PneumaticEnum.Bird);
+      Robot.m_PneumaticSubsystem.pistonReset(PneumaticEnum.Bird);
   }
 
   // Make this return true when this Command no longer needs to run execute()
