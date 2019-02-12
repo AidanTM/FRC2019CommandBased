@@ -26,6 +26,9 @@ public class PneumaticCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_PneumaticSubsystem.pistonReset(PneumaticEnum.Gripper);
+    Robot.m_PneumaticSubsystem.pistonReset(PneumaticEnum.Vertical);
+    Robot.m_PneumaticSubsystem.pistonReset(PneumaticEnum.Bird);
     lastTriggerTime = 30;
   }
 
@@ -34,7 +37,7 @@ public class PneumaticCommand extends Command {
   protected void execute() {
     double trigger = controller.getTriggerAxis(Hand.kLeft);
 
-    if (trigger > 0.5)
+    if (trigger > 0.1)
     {
       lastTriggerTime = 0;
       Robot.m_PneumaticSubsystem.pistonOut(PneumaticEnum.Bird);
@@ -48,11 +51,29 @@ public class PneumaticCommand extends Command {
     }
     else
       Robot.m_PneumaticSubsystem.pistonReset(PneumaticEnum.Bird);
+
+    double throttle = controller.getY(Hand.kRight);
+
+    if (throttle > 0.1)
+    {
+      Robot.m_PneumaticSubsystem.pistonOut(PneumaticEnum.Gripper);
+      controller.setRumble(RumbleType.kRightRumble, 1.0);
+    }
+    else if (throttle < -0.1)
+    {
+      Robot.m_PneumaticSubsystem.pistonIn(PneumaticEnum.Gripper);
+      controller.setRumble(RumbleType.kRightRumble, 0.0);
+    }
+    else
+      Robot.m_PneumaticSubsystem.pistonReset(PneumaticEnum.Gripper);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
+
+    Robot.m_PneumaticSubsystem.pistonOut(PneumaticEnum.Gripper);
+    Robot.m_PneumaticSubsystem.pistonOut(PneumaticEnum.Vertical);
     return false;
   }
 
