@@ -8,7 +8,9 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.PneumaticCommand;
 import frc.robot.others.*;
@@ -29,7 +31,6 @@ public class PneumaticSubsystem extends Subsystem {
     hatchBirdPiston = new DoubleSolenoid(RobotMap.solenoidHatchForwardPort, RobotMap.solenoidHatchBackwardPort);
     hatchVerticalPiston = new DoubleSolenoid(RobotMap.solenoidVerticalForwardPort, RobotMap.solenoidVerticalBackwardPort);
     ballGripperPiston = new DoubleSolenoid(RobotMap.solenoidGripperForwardPort, RobotMap.solenoidGripperBackwardPort);
-    
     setDefaultCommand(new PneumaticCommand());
   }
   //Yuck!
@@ -45,6 +46,7 @@ public class PneumaticSubsystem extends Subsystem {
       break;
 
       case Gripper:
+        DriverStation.reportWarning("testIn", false);
         ballGripperPiston.set(DoubleSolenoid.Value.kReverse);
       break;
     }
@@ -62,6 +64,7 @@ public class PneumaticSubsystem extends Subsystem {
       break;
 
       case Gripper:
+        DriverStation.reportWarning("testOut", false);
         ballGripperPiston.set(DoubleSolenoid.Value.kForward);
       break;
     }

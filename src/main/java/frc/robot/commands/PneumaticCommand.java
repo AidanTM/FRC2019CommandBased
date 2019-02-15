@@ -9,7 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-//import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
@@ -26,9 +26,9 @@ public class PneumaticCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_PneumaticSubsystem.pistonReset(PneumaticEnum.Gripper);
-    Robot.m_PneumaticSubsystem.pistonReset(PneumaticEnum.Vertical);
-    Robot.m_PneumaticSubsystem.pistonReset(PneumaticEnum.Bird);
+    //Robot.m_PneumaticSubsystem.pistonReset(PneumaticEnum.Gripper);
+    //obot.m_PneumaticSubsystem.pistonReset(PneumaticEnum.Vertical);
+    //Robot.m_PneumaticSubsystem.pistonReset(PneumaticEnum.Bird);
     lastTriggerTime = 30;
   }
 
@@ -54,26 +54,29 @@ public class PneumaticCommand extends Command {
 
     double throttle = controller.getY(Hand.kRight);
 
-    if (throttle > 0.1)
+    if (throttle < -0.1)
     {
       Robot.m_PneumaticSubsystem.pistonOut(PneumaticEnum.Gripper);
-      //controller.setRumble(RumbleType.kRightRumble, 1.0);
+      controller.setRumble(RumbleType.kRightRumble, 1.0);
     }
-    else if (throttle < -0.1)
+    else if (throttle > 0.1)
     {
       Robot.m_PneumaticSubsystem.pistonIn(PneumaticEnum.Gripper);
-      //controller.setRumble(RumbleType.kRightRumble, 0.0);
+      controller.setRumble(RumbleType.kRightRumble, 0.0);
     }
     else
+    {
       Robot.m_PneumaticSubsystem.pistonReset(PneumaticEnum.Gripper);
+      controller.setRumble(RumbleType.kRightRumble, 0.0);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
 
-    Robot.m_PneumaticSubsystem.pistonOut(PneumaticEnum.Gripper);
-    Robot.m_PneumaticSubsystem.pistonOut(PneumaticEnum.Vertical);
+    //Robot.m_PneumaticSubsystem.pistonOut(PneumaticEnum.Gripper);
+    //Robot.m_PneumaticSubsystem.pistonOut(PneumaticEnum.Vertical);
     return false;
   }
 
