@@ -9,7 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+//import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
@@ -41,13 +41,13 @@ public class PneumaticCommand extends Command {
     {
       lastTriggerTime = 0;
       Robot.m_PneumaticSubsystem.pistonOut(PneumaticEnum.Bird);
-      controller.setRumble(RumbleType.kLeftRumble, 1.0);
+      //controller.setRumble(RumbleType.kLeftRumble, 1.0);
     }
     else if (lastTriggerTime < 50)
     {
       lastTriggerTime++;
       Robot.m_PneumaticSubsystem.pistonIn(PneumaticEnum.Bird);
-      controller.setRumble(RumbleType.kLeftRumble, 0.0);
+      //controller.setRumble(RumbleType.kLeftRumble, 0.0);
     }
     else
       Robot.m_PneumaticSubsystem.pistonReset(PneumaticEnum.Bird);
@@ -57,12 +57,12 @@ public class PneumaticCommand extends Command {
     if (throttle > 0.1)
     {
       Robot.m_PneumaticSubsystem.pistonOut(PneumaticEnum.Gripper);
-      controller.setRumble(RumbleType.kRightRumble, 1.0);
+      //controller.setRumble(RumbleType.kRightRumble, 1.0);
     }
     else if (throttle < -0.1)
     {
       Robot.m_PneumaticSubsystem.pistonIn(PneumaticEnum.Gripper);
-      controller.setRumble(RumbleType.kRightRumble, 0.0);
+      //controller.setRumble(RumbleType.kRightRumble, 0.0);
     }
     else
       Robot.m_PneumaticSubsystem.pistonReset(PneumaticEnum.Gripper);

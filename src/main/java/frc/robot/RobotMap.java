@@ -22,19 +22,19 @@ public class RobotMap {
 	public static int rightFrontPort = 3;
   public static int rightBackPort = 4;
 
-  public static int rightIntakePort = 5;
-  public static int leftIntakePort = 6;
+  public static int rightIntakePort = 7;
+  public static int leftIntakePort = 8;
 
   public static int controllerPort = 0;
 
-  public static int solenoidHatchForwardPort = 6;
-  public static int solenoidHatchBackwardPort = 7;
+  public static int solenoidHatchForwardPort = 2;
+  public static int solenoidHatchBackwardPort = 3;
 
   public static int solenoidVerticalForwardPort = 0;
   public static int solenoidVerticalBackwardPort = 1;
 
-  public static int solenoidGripperForwardPort = 2;
-  public static int solenoidGripperBackwardPort = 3;
+  public static int solenoidGripperForwardPort = 6;
+  public static int solenoidGripperBackwardPort = 7;
 
   
   // If you are using multiple modules, make sure to define both the port

@@ -30,7 +30,7 @@ public class IntakeCommand extends Command {
     boolean rightBumper = OI.controller.getBumper(Hand.kRight);
 
     if (leftBumper)
-      Robot.m_IntakeSubsystem.setWheelSpeed(1.0);
+      Robot.m_IntakeSubsystem.setWheelSpeed(0.55);
     else if (rightBumper)
       Robot.m_IntakeSubsystem.setWheelSpeed(-1.0);
     else
